@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-background-light: #FAFAFA;
+  --color-surface-light: rgba(255, 255, 255, 0.7);
+  --color-text-primary-light: #111111;
+  --color-text-secondary-light: #666666;
+  
+  --color-background-dark: #0A0A0A;
+  --color-surface-dark: rgba(26, 26, 26, 0.7);
+  --color-text-primary-dark: #EDEDED;
+  --color-text-secondary-dark: #888888;
+  
+  --color-accent: #6366f1; /* Soft indigo */
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    @apply border-black/5 dark:border-white/10;
+  }
+  
+  body {
+    @apply font-sans antialiased bg-background-light text-text-primary-light dark:bg-background-dark dark:text-text-primary-dark transition-colors duration-300;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+}
+
+.glass {
+  @apply backdrop-blur-xl bg-surface-light dark:bg-surface-dark border border-white/20 dark:border-white/5;
+}
+
+.interstitial-fade {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Custom scrollbar for minimalist feel */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black/10 dark:bg-white/10 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-black/20 dark:bg-white/20;
+}
